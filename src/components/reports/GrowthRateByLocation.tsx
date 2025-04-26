@@ -8,7 +8,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../ui/select";
-import Tooltip from "../ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "../ui/tooltip";
 import { Info } from "lucide-react";
 import GrowthRateByLocationChart from "./GrowthRateByLocationChart";
 type Props = {
@@ -60,18 +65,38 @@ const GrowthRateByLocation: React.FC<Props> = ({}) => {
             <div className="w-3 h-3 bg-cyanTeal mr-2"></div>
             <div className="whitespace-pre-wrap">
               <span className="text-sm">Observed Growth Rate</span>
-              <Tooltip content="The current rate of growth observed for the tree, based on changes in its size over time" side="top">
-                <Info className="w-4 h-4 ml-1 text-gray-400 cursor-default shrink-0 align-info-icon" />
-              </Tooltip>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Info className="w-4 h-4 ml-1 text-gray-400 cursor-default shrink-0 align-info-icon" />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>
+                      The current rate of growth observed for the tree, based on
+                      changes in its size over time
+                    </p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </div>
           </div>
           <div className="flex items-center">
             <div className="w-3 h-3 bg-darkBlue mr-2"></div>
             <div className="whitespace-pre-wrap">
               <span className="text-sm">Standard Growth Rate</span>
-              <Tooltip content="The expected growth rate for a tree according to his species and age, based on typical size benchmarks" side="top">
-                <Info className="w-4 h-4 ml-1 text-gray-400 cursor-default shrink-0 align-info-icon" />
-              </Tooltip>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger>
+                    <Info className="w-4 h-4 ml-1 text-gray-400 cursor-default shrink-0 align-info-icon" />
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>
+                      The expected growth rate for a tree according to his
+                      species and age, based on typical size benchmarks
+                    </p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             </div>
           </div>
         </div>

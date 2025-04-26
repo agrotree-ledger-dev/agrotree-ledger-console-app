@@ -3,7 +3,12 @@ import { getTotalTreeCountFromShyft } from "@/_actions/shyft.action";
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { Info } from "lucide-react";
-import Tooltip from "../ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "../ui/tooltip";
 
 import { Loader2Icon } from "lucide-react";
 type Props = {
@@ -34,34 +39,64 @@ const AccountStatisticGrid: React.FC<Props> = ({ userId }) => {
       </div>
       <div className="bg-blue-500 p-5 rounded-md text-center space-y-1">
         <div className="text-white text-4xl font-bold">236</div>
-        <div className="text-white flex items-center justify-center text-muted-foreground text-sm uppercase">
+        <div className="flex items-center justify-center text-muted-foreground text-sm uppercase">
           <div className="whitespace-pre-wrap">
             CO2 Sequestration
-            <Tooltip content="Total expected CO₂ absorption by trees in your portfolio (in tonnes)" side="top">
-              <Info className="w-4 h-4 ml-1 text-gray-400 cursor-default shrink-0 align-info-icon" />
-            </Tooltip>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Info className="w-4 h-4 ml-1 text-gray-400 cursor-default shrink-0 align-info-icon" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>
+                    Total expected CO₂ absorption by trees in your portfolio (in
+                    tonnes)
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
         </div>
       </div>
       <div className="bg-green-700 p-5 rounded-md text-center space-y-1">
         <div className="text-white text-4xl font-bold">100%</div>
-        <div className="text-white flex items-center justify-center text-muted-foreground text-sm uppercase">
+        <div className="flex items-center justify-center text-muted-foreground text-sm uppercase">
           <div className="whitespace-pre-wrap">
             Tree Survival Rate
-            <Tooltip content="Percentage of trees that are successfully growing and not marked as dead or underperforming" side="top">
-              <Info className="w-4 h-4 ml-1 text-gray-400 cursor-default shrink-0 align-info-icon" />
-            </Tooltip>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Info className="w-4 h-4 ml-1 text-gray-400 cursor-default shrink-0 align-info-icon" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>
+                    Percentage of trees that are successfully growing and not
+                    marked as dead or underperforming
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
         </div>
       </div>
       <div className="bg-green-400 p-5 rounded-md text-center space-y-1">
         <div className="text-white text-4xl font-bold">+8.9%</div>
-        <div className="text-white flex items-center justify-center text-muted-foreground text-sm uppercase">
+        <div className="flex items-center justify-center text-muted-foreground text-sm uppercase">
           <div className="whitespace-pre-wrap">
             Average Expected Annual ROI
-            <Tooltip content="Calculated from the average of all tree investments' expected ROI, based on historical data and forecasted growth" side="top">
-              <Info className="w-4 h-4 ml-1 text-gray-400 cursor-default shrink-0 align-info-icon" />
-            </Tooltip>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger>
+                  <Info className="w-4 h-4 ml-1 text-gray-400 cursor-default shrink-0 align-info-icon" />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <p>
+                    Calculated from the average of all tree investments&apos;
+                    expected ROI, based on historical data and forecasted growth
+                  </p>
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
           </div>
         </div>
       </div>

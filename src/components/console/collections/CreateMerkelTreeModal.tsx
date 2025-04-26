@@ -105,7 +105,7 @@ const CreateMerkelTreeModal: React.FC<Props> = ({ cid }) => {
         success: async (res) => {
           setLoading(false);
           setOpen(false);
-          await revalidatePathAction(`/console/collections/${cid}`, "page");
+          await revalidatePathAction(`/collections/${cid}`, "page");
           return `Merkel Tree created successfully! tx: ${res.tx}`;
         },
         error: () => {

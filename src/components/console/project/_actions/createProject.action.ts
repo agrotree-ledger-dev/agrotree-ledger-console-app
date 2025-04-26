@@ -16,6 +16,7 @@ export async function createProjectAction(formData: FormData) {
 
     const project = await prisma.project.create({
       data: {
+        id: uuidv4(),
         name: formData.get("name") as string,
         description: formData.get("description") as string,
         content: formData.get("content") as string,

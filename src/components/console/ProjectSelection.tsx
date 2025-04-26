@@ -113,7 +113,7 @@ const ProjectSelection: React.FC<Props> = ({ className }) => {
           <CommandList>
             <CommandGroup>
               <CommandItem className="group" asChild>
-                <Link href={"/console/project/new"} className="cursor-pointer">
+                <Link href={"/project/new"} className="cursor-pointer">
                   <div className="p-1 flex items-center gap-2 text-xs">
                     <Plus className="size-4" />
                     Create new project

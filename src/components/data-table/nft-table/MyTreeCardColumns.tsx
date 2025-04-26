@@ -68,7 +68,7 @@ export const getMyTreeCardColumns = (
     cell: ({ row }) => {
       return (
         <Badge variant={"outline"}>
-          {row.original.attributes.current_height || "Growth"}
+          {row.original.attributes?.current_height || "Growth"}
         </Badge>
       );
     },
@@ -82,7 +82,7 @@ export const getMyTreeCardColumns = (
           variant={"outline"}
           className="border border-green-500 text-green-500"
         >
-          {row.original.attributes.status || "Growth"}
+          {row.original.attributes?.status || "Growth"}
         </Badge>
       );
     },
@@ -97,7 +97,7 @@ export const getMyTreeCardColumns = (
             variant={"outline"}
             className="border border-muted-foreground text-muted-forborder-muted-foreground"
           >
-            {row.original.attributes.current_estimated_value || "-"} {currency}
+            {row.original.attributes?.current_estimated_value || "-"} {currency}
           </Badge>
         </div>
       );

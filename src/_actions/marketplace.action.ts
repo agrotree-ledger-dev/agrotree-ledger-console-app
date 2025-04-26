@@ -24,7 +24,7 @@ export async function getMarketplaceListingNftBySellerAction(
     items: items.map((item) => ({
       ...item,
       price: rawAddress
-        .find((r) => r.account.assetId.toBase58() === item.address)
+        .find((r) => r.account.assetId.toBase58() === item.mint)
         ?.account.price.toString(),
     })),
   };

@@ -88,7 +88,7 @@ export async function syncNftTree(id: number, tx?: string) {
     },
   });
 
-  revalidatePath("/console/collections/[slug]", "layout");
+  revalidatePath("/collections/[slug]", "layout");
 
   return {
     assetId: assetIndex.toString(),

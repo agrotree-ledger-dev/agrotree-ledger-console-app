@@ -87,7 +87,7 @@ const NewCollectionForm: React.FC<Props> = ({ callbackFn }) => {
           tx: string;
           collection: string;
         }>(async (resolve, reject) => {
-          let _collectionId = undefined;
+          let _collectionId = "";
           try {
             const formData = new FormData();
             formData.append("projectId", selectedProject?.id || "");

@@ -4,7 +4,6 @@ import React from "react";
 
 import { ConnectKitProvider, createConfig } from "@particle-network/connectkit";
 import { authWalletConnectors } from "@particle-network/connectkit/auth";
-import type { Chain } from "@particle-network/connectkit/chains";
 // embedded wallet start
 import { EntryPosition, wallet } from "@particle-network/connectkit/wallet";
 
@@ -25,12 +24,6 @@ const appId = process.env.NEXT_PUBLIC_APP_ID as string;
 if (!projectId || !clientKey || !appId) {
   throw new Error("Please configure the Particle project in .env first!");
 }
-
-const supportChains: Chain[] = [solana, solanaDevnet];
-
-// solana start
-// supportChains.push(solanaDevnet);
-// solana end
 
 const config = createConfig({
   projectId,
@@ -130,12 +123,12 @@ const config = createConfig({
   plugins: [
     // embedded wallet start
     wallet({
-      visible: false,
+      visible: true,
       entryPosition: EntryPosition.BR,
     }),
     // embedded wallet end
   ],
-  chains: supportChains as unknown as readonly [Chain, ...Chain[]],
+  chains: [solana, solanaDevnet],
 });
 
 // Wrap your application with this component.

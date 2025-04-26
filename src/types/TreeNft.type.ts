@@ -1,3 +1,5 @@
+import { DAS } from "helius-sdk";
+
 export type TreeNftType = {
   address: string;
   owner: string;
@@ -6,13 +8,7 @@ export type TreeNftType = {
     symbol: string;
     token_standard?: string;
     description?: string;
-    attributes:
-      | Array<{
-          trait_type?: string;
-          value?: string | number;
-          [key: string]: unknown;
-        }>
-      | undefined;
+    attributes?: DAS.Attribute[];
   };
   uri: string;
   file?: {

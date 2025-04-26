@@ -377,28 +377,35 @@ export function convertHeliusApiAssetToNftType(
     (group) => group.group_key === "collection"
   );
   return {
-    address: item.id,
+    name: item.content?.metadata.name ?? "",
+    description: item.content?.metadata.description ?? "",
+    symbol: item.content?.metadata.symbol ?? "",
+    image_uri: item.content?.links?.image ?? "",
+    royalty: item.royalty?.basis_points ?? 0,
+    mint: item.id,
     owner: item.ownership.owner,
-    metadata: {
-      name: item.content?.metadata.name ?? "",
-      symbol: item.content?.metadata.symbol ?? "",
-      description: item.content?.metadata.description,
-      attributes: item.content?.metadata.attributes?.map((attr) => ({
-        trait_type: attr.trait_type,
-        value: attr.value,
-      })),
-    },
-    uri: item.content?.json_uri ?? "",
-    file: {
-      uri: item.content?.links?.image,
-      mime: "image/png",
-    },
-    authorities: item.authorities,
-    isCompressed: item.compression?.compressed ?? false,
-    tree: item.compression?.tree,
+    cached_image_uri: item.content?.links?.image
+      ? `https://cdn.helius-rpc.com/cdn-cgi/image//${item.content?.links?.image}`
+      : "",
+    metadata_uri: item.content?.json_uri ?? "",
+    creators:
+      item.creators?.map((creator) => ({
+        address: creator.address,
+        verified: creator.verified,
+        share: creator.share,
+      })) ?? [],
     collection: {
       address: collection?.group_value || "",
       verified: collection?.verified || false,
+      name: collection?.collection_metadata?.name || "",
     },
+
+    attributes_array: item.content?.metadata.attributes,
+    files: item.content?.files,
+    primary_sale_happened: item.royalty?.primary_sale_happened ?? false,
+    is_mutable: item.mutable,
+    is_compressed: item.compression?.compressed ?? false,
+    compression: item.compression,
+    merkle_tree: item.compression?.tree,
   };
 }

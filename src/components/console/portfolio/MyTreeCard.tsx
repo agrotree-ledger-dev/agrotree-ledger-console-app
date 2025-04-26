@@ -1,5 +1,5 @@
 "use client";
-import { getAssetByOwnerFromShyft } from "@/_actions/shyft.action";
+import { getAssetByOwnerFromHelius } from "@/_actions/helius.action";
 import { DataTablePagination } from "@/components/data-table/data-pagination";
 import { getMyTreeCardColumns } from "@/components/data-table/nft-table/MyTreeCardColumns";
 import TableSkeleton from "@/components/data-table/TableSkeleton";
@@ -41,7 +41,7 @@ const MyTreeCard: React.FC<Props> = ({ address }) => {
   const { data, isLoading } = useQuery({
     queryKey: ["get-my-trees", address, pagination.pageIndex],
     queryFn: async () =>
-      getAssetByOwnerFromShyft(address, pagination.pageIndex),
+      getAssetByOwnerFromHelius(address, pagination.pageIndex),
     placeholderData: keepPreviousData,
     enabled: !!address,
   });

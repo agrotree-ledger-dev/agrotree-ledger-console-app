@@ -24,11 +24,11 @@ export const NAVBAR_ITEMS: NavbarItemType[] = [
 ];
 
 export const DASHBOARD_MENU = [
-  { name: "Portfolio", href: "/console", icon: AlbumIcon },
-  { name: "Collections", href: "/console/collections", icon: ImagesIcon },
+  { name: "Portfolio", href: "/", icon: AlbumIcon },
+  { name: "Collections", href: "/collections", icon: ImagesIcon },
   {
     name: "Reports",
-    href: "/console/reports",
+    href: "/reports",
     icon: FileTextIcon,
   },
   {
@@ -36,7 +36,7 @@ export const DASHBOARD_MENU = [
     href: "https://marketplace.agrotreeledger.com",
     icon: StoreIcon,
   },
-  { name: "Account", href: "/console/account", icon: CircleUserRoundIcon },
+  { name: "Account", href: "/account", icon: CircleUserRoundIcon },
 ];
 
 export const MPL_BUBBLEGUM_PROGRAM_ID = new PublicKey(

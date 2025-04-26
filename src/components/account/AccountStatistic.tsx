@@ -5,7 +5,12 @@ import { Button } from "../ui/button";
 import { useQuery } from "@tanstack/react-query";
 import { getTotalTreeCountFromShyft } from "@/_actions/shyft.action";
 import { Info } from "lucide-react";
-import Tooltip from "../ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "../ui/tooltip";
 type Props = {
   userId: string;
 };
@@ -27,12 +32,19 @@ const AccountStatistic: React.FC<Props> = ({ userId }) => {
               <h3 className="flex items-center justify-center text-muted-foreground text-sm">
                 <div className="whitespace-pre-wrap">
                   Average Expected Annual ROI
-                  <Tooltip
-                    content="Return on investment based on initial NFT price, projected sale price post-harvest, and time elapsed"
-                    side="top"
-                  >
-                    <Info className="w-4 h-4 ml-1 text-gray-400 cursor-default shrink-0 align-info-icon" />
-                  </Tooltip>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="w-4 h-4 ml-1 text-gray-400 cursor-default shrink-0 align-info-icon" />
+                      </TooltipTrigger>
+                      <TooltipContent side="top">
+                        <p>
+                          Return on investment based on initial NFT price,
+                          projected sale price post-harvest, and time elapsed
+                        </p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
                 </div>
               </h3>
             </div>
@@ -47,12 +59,19 @@ const AccountStatistic: React.FC<Props> = ({ userId }) => {
             <h3 className="flex items-center justify-center text-muted-foreground text-sm">
               <div className="whitespace-pre-wrap">
                 Total Expected Tonnes of CO2 Offset
-                <Tooltip
-                  content="Expected total carbon dioxide offset by your tree holdings (measured in tonnes)"
-                  side="top"
-                >
-                  <Info className="w-4 h-4 ml-1 text-gray-400 cursor-default shrink-0 align-info-icon" />
-                </Tooltip>
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger>
+                      <Info className="w-4 h-4 ml-1 text-gray-400 cursor-default shrink-0 align-info-icon" />
+                    </TooltipTrigger>
+                    <TooltipContent side="top">
+                      <p>
+                        Expected total carbon dioxide offset by your tree
+                        holdings (measured in tonnes)
+                      </p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
               </div>
             </h3>
           </div>
@@ -76,12 +95,16 @@ const AccountStatistic: React.FC<Props> = ({ userId }) => {
               <h3 className="flex items-center justify-center text-muted-foreground text-sm">
                 <div className="whitespace-pre-wrap">
                   NFTs Tree - Total number
-                  <Tooltip
-                    content="Total number of NFTs (trees) in your ownership"
-                    side="top"
-                  >
-                    <Info className="w-4 h-4 ml-1 text-gray-400 cursor-default shrink-0 align-info-icon" />
-                  </Tooltip>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="w-4 h-4 ml-1 text-gray-400 cursor-default shrink-0 align-info-icon" />
+                      </TooltipTrigger>
+                      <TooltipContent side="top">
+                        <p>Total number of NFTs (trees) in your ownership</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
                 </div>
               </h3>
             </div>
@@ -102,12 +125,19 @@ const AccountStatistic: React.FC<Props> = ({ userId }) => {
               <span className="flex items-center justify-center text-right text-xs text-muted-foreground">
                 <div className="whitespace-pre-wrap">
                   Total Investment Estimated Value
-                  <Tooltip
-                    content="Total investment value in USD, based on the current market value of the NFTs"
-                    side="top"
-                  >
-                    <Info className="w-4 h-4 ml-1 text-gray-400 cursor-default shrink-0 align-info-icon" />
-                  </Tooltip>
+                  <TooltipProvider>
+                    <Tooltip>
+                      <TooltipTrigger>
+                        <Info className="w-4 h-4 ml-1 text-gray-400 cursor-default shrink-0 align-info-icon" />
+                      </TooltipTrigger>
+                      <TooltipContent side="top">
+                        <p>
+                          Total investment value in USD, based on the current
+                          market value of the NFTs
+                        </p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </TooltipProvider>
                 </div>
               </span>
               <div className="text-3xl font-bold text-right">

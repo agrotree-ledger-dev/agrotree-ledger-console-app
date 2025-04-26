@@ -15,7 +15,7 @@ export async function getAssetByOwnerFromHelius(
   owner: string,
   page: number = 1,
   size: number = 10
-): Promise<PaginationShyftType<TreeNftType>> {
+): Promise<PaginationShyftType<Nft>> {
   const response = await helius.rpc.getAssetsByOwner({
     ownerAddress: owner,
     page,
@@ -29,7 +29,7 @@ export async function getAssetByOwnerFromHelius(
   if (response.items.length > 0) {
     return {
       items: response.items.map((item) =>
-        convertHeliusApiAssetToTreeNftType(item)
+        convertHeliusApiAssetToNftType(item)
       ),
       total_data: response.total,
       page: response.page,

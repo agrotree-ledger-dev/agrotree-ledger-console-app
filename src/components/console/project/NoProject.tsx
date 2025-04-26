@@ -13,7 +13,7 @@ const NoProject = async () => {
       <FolderKanban className="size-[50px] text-muted-foreground animate-bounce" />
       <p className="text-pretty">
         You don&apos;t have any projects yet. Click{" "}
-        <Link href={"/console/project/new"} className="text-green-500">
+        <Link href={"/project/new"} className="text-green-500">
           here
         </Link>{" "}
         to create one.

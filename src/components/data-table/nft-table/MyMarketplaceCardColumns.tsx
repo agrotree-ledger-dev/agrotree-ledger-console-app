@@ -69,7 +69,7 @@ export const getMyMarketplaceCardColumns = (
     cell: ({ row }) => {
       return (
         <Badge variant={"outline"}>
-          {row.original.attributes.current_height || "Growth"}
+          {row.original.attributes?.current_height || "Growth"}
         </Badge>
       );
     },
@@ -83,7 +83,7 @@ export const getMyMarketplaceCardColumns = (
           variant={"outline"}
           className="border border-green-500 text-green-500"
         >
-          {row.original.attributes.status || "Growth"}
+          {row.original.attributes?.status || "Growth"}
         </Badge>
       );
     },

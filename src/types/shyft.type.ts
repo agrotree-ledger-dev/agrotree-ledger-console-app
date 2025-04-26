@@ -1,3 +1,5 @@
+import { DAS } from "helius-sdk";
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export type SiteConfig = {
   name: string;
@@ -105,24 +107,25 @@ export type Nft = {
   image_uri: string;
   royalty: number;
   mint: string;
-  attributes: { [k: string]: string | number };
+  attributes?: { [k: string]: string | number };
   owner: string;
-  update_authority: string;
+  update_authority?: string;
   cached_image_uri: string;
-  animation_url: string;
-  cached_animation_url: string;
+  animation_url?: string;
+  cached_animation_url?: string;
   metadata_uri: string;
   creators: Creator[];
   collection: CollectionInfo;
-  attributes_array: any;
-  files: NftFile[];
-  external_url: string;
-  is_loaded_metadata: boolean;
-  primary_sale_happened: boolean;
+  attributes_array?: DAS.Attribute[];
+  files?: DAS.Files;
+  external_url?: string;
+  is_loaded_metadata?: boolean;
+  primary_sale_happened?: boolean;
   is_mutable: boolean;
   is_compressed: boolean;
-  merkle_tree: string;
+  merkle_tree?: string;
   price?: string;
+  compression?: DAS.Compression;
 };
 
 export type UploadResult = {
