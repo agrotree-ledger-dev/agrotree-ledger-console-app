@@ -1,0 +1,785 @@
+{
+  "address": "EFw2geYiUUZup7tWqXFn5voceBPPPMttQvkLZ42ZD3WD",
+  "metadata": {
+    "name": "agrotree_marketplace",
+    "version": "0.1.0",
+    "spec": "0.1.0",
+    "description": "Created with Anchor"
+  },
+  "instructions": [
+    {
+      "name": "buy_cnft",
+      "discriminator": [
+        202,
+        184,
+        228,
+        3,
+        59,
+        163,
+        93,
+        90
+      ],
+      "accounts": [
+        {
+          "name": "buyer",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "seller",
+          "writable": true
+        },
+        {
+          "name": "market_config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  45,
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "market_fee_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  45,
+                  102,
+                  101,
+                  101,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "market_config"
+              }
+            ]
+          }
+        },
+        {
+          "name": "compressed_listing",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  45,
+                  108,
+                  105,
+                  115,
+                  116,
+                  105,
+                  110,
+                  103
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "seller"
+              },
+              {
+                "kind": "account",
+                "path": "merkle_tree"
+              },
+              {
+                "kind": "arg",
+                "path": "args.asset_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "tree_config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "merkle_tree"
+              }
+            ],
+            "program": {
+              "kind": "account",
+              "path": "mpl_bubblegum_program"
+            }
+          }
+        },
+        {
+          "name": "merkle_tree",
+          "writable": true
+        },
+        {
+          "name": "leaf_owner"
+        },
+        {
+          "name": "leaf_delegate"
+        },
+        {
+          "name": "mpl_bubblegum_program",
+          "address": "BGUMAp9Gq7iTEuizy4pqaxsTyUCBK68MDfK752saRPUY"
+        },
+        {
+          "name": "spl_compression_program",
+          "address": "cmtDvXumGCrqC1Age74AVPhSRVXJMd8PJS91L8KbNCK"
+        },
+        {
+          "name": "log_wrapper_program",
+          "address": "noopb9bkMVfRPU8AsbpTUg8AQkHtKwMYZiFUjNRtMmV"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": {
+              "name": "BuyCnftArgs"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "collect_fee",
+      "discriminator": [
+        60,
+        173,
+        247,
+        103,
+        4,
+        93,
+        130,
+        48
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true,
+          "relations": [
+            "market_config"
+          ]
+        },
+        {
+          "name": "market_config",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  45,
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "market_fee_vault",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  45,
+                  102,
+                  101,
+                  101,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "market_config"
+              }
+            ]
+          }
+        },
+        {
+          "name": "destination",
+          "writable": true
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": []
+    },
+    {
+      "name": "initialize",
+      "discriminator": [
+        175,
+        175,
+        109,
+        31,
+        13,
+        152,
+        155,
+        237
+      ],
+      "accounts": [
+        {
+          "name": "authority",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "market_config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  45,
+                  99,
+                  111,
+                  110,
+                  102,
+                  105,
+                  103
+                ]
+              }
+            ]
+          }
+        },
+        {
+          "name": "market_fee_vault",
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  109,
+                  45,
+                  102,
+                  101,
+                  101,
+                  118,
+                  97,
+                  117,
+                  108,
+                  116
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "market_config"
+              }
+            ]
+          }
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "fee",
+          "type": "u16"
+        }
+      ]
+    },
+    {
+      "name": "listing_cnft",
+      "discriminator": [
+        186,
+        251,
+        104,
+        187,
+        45,
+        135,
+        27,
+        215
+      ],
+      "accounts": [
+        {
+          "name": "seller",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "compressed_listing",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  45,
+                  108,
+                  105,
+                  115,
+                  116,
+                  105,
+                  110,
+                  103
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "seller"
+              },
+              {
+                "kind": "account",
+                "path": "merkle_tree"
+              },
+              {
+                "kind": "arg",
+                "path": "args.asset_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "tree_config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "merkle_tree"
+              }
+            ],
+            "program": {
+              "kind": "account",
+              "path": "mpl_bubblegum_program"
+            }
+          }
+        },
+        {
+          "name": "merkle_tree",
+          "writable": true
+        },
+        {
+          "name": "leaf_owner"
+        },
+        {
+          "name": "leaf_delegate"
+        },
+        {
+          "name": "mpl_bubblegum_program",
+          "address": "BGUMAp9Gq7iTEuizy4pqaxsTyUCBK68MDfK752saRPUY"
+        },
+        {
+          "name": "spl_compression_program",
+          "address": "cmtDvXumGCrqC1Age74AVPhSRVXJMd8PJS91L8KbNCK"
+        },
+        {
+          "name": "log_wrapper_program",
+          "address": "noopb9bkMVfRPU8AsbpTUg8AQkHtKwMYZiFUjNRtMmV"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": {
+              "name": "ListingCnftArgs"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "unlist_cnft",
+      "discriminator": [
+        219,
+        67,
+        11,
+        161,
+        198,
+        208,
+        221,
+        217
+      ],
+      "accounts": [
+        {
+          "name": "seller",
+          "writable": true,
+          "signer": true
+        },
+        {
+          "name": "compressed_listing",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "const",
+                "value": [
+                  99,
+                  45,
+                  108,
+                  105,
+                  115,
+                  116,
+                  105,
+                  110,
+                  103
+                ]
+              },
+              {
+                "kind": "account",
+                "path": "seller"
+              },
+              {
+                "kind": "account",
+                "path": "merkle_tree"
+              },
+              {
+                "kind": "arg",
+                "path": "args.asset_id"
+              }
+            ]
+          }
+        },
+        {
+          "name": "tree_config",
+          "writable": true,
+          "pda": {
+            "seeds": [
+              {
+                "kind": "account",
+                "path": "merkle_tree"
+              }
+            ],
+            "program": {
+              "kind": "account",
+              "path": "mpl_bubblegum_program"
+            }
+          }
+        },
+        {
+          "name": "merkle_tree",
+          "writable": true
+        },
+        {
+          "name": "leaf_owner"
+        },
+        {
+          "name": "leaf_delegate"
+        },
+        {
+          "name": "mpl_bubblegum_program",
+          "address": "BGUMAp9Gq7iTEuizy4pqaxsTyUCBK68MDfK752saRPUY"
+        },
+        {
+          "name": "spl_compression_program",
+          "address": "cmtDvXumGCrqC1Age74AVPhSRVXJMd8PJS91L8KbNCK"
+        },
+        {
+          "name": "log_wrapper_program",
+          "address": "noopb9bkMVfRPU8AsbpTUg8AQkHtKwMYZiFUjNRtMmV"
+        },
+        {
+          "name": "system_program",
+          "address": "11111111111111111111111111111111"
+        }
+      ],
+      "args": [
+        {
+          "name": "args",
+          "type": {
+            "defined": {
+              "name": "UnlistCnftArgs"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "accounts": [
+    {
+      "name": "CompressedListing",
+      "discriminator": [
+        164,
+        96,
+        88,
+        33,
+        255,
+        76,
+        15,
+        149
+      ]
+    },
+    {
+      "name": "MarketConfig",
+      "discriminator": [
+        119,
+        255,
+        200,
+        88,
+        252,
+        82,
+        128,
+        24
+      ]
+    }
+  ],
+  "errors": [
+    {
+      "code": 6000,
+      "name": "Unauthorized"
+    },
+    {
+      "code": 6001,
+      "name": "MathError"
+    },
+    {
+      "code": 6002,
+      "name": "InvalidFee"
+    },
+    {
+      "code": 6003,
+      "name": "InvalidAssetId"
+    },
+    {
+      "code": 6004,
+      "name": "InvalidPrice"
+    },
+    {
+      "code": 6005,
+      "name": "InvalidCompressedListingSeller"
+    },
+    {
+      "code": 6006,
+      "name": "InvalidCompressedListingMerkleTree"
+    },
+    {
+      "code": 6007,
+      "name": "InvalidCompressedListingAssetId"
+    }
+  ],
+  "types": [
+    {
+      "name": "BuyCnftArgs",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "asset_id",
+            "type": "pubkey"
+          },
+          {
+            "name": "cnft_args",
+            "type": {
+              "defined": {
+                "name": "CnftArgs"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "CnftArgs",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "root",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "data_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "creator_hash",
+            "type": {
+              "array": [
+                "u8",
+                32
+              ]
+            }
+          },
+          {
+            "name": "nonce",
+            "type": "u64"
+          },
+          {
+            "name": "index",
+            "type": "u32"
+          }
+        ]
+      }
+    },
+    {
+      "name": "CompressedListing",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "seller",
+            "type": "pubkey"
+          },
+          {
+            "name": "merkle_tree",
+            "type": "pubkey"
+          },
+          {
+            "name": "asset_id",
+            "type": "pubkey"
+          },
+          {
+            "name": "price",
+            "type": "u64"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "ListingCnftArgs",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "asset_id",
+            "type": "pubkey"
+          },
+          {
+            "name": "price",
+            "type": "u64"
+          },
+          {
+            "name": "cnft_args",
+            "type": {
+              "defined": {
+                "name": "CnftArgs"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "name": "MarketConfig",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "authority",
+            "type": "pubkey"
+          },
+          {
+            "name": "fee_vault",
+            "type": "pubkey"
+          },
+          {
+            "name": "fee",
+            "type": "u16"
+          },
+          {
+            "name": "bump",
+            "type": "u8"
+          },
+          {
+            "name": "fee_vault_bump",
+            "type": "u8"
+          }
+        ]
+      }
+    },
+    {
+      "name": "UnlistCnftArgs",
+      "type": {
+        "kind": "struct",
+        "fields": [
+          {
+            "name": "asset_id",
+            "type": "pubkey"
+          },
+          {
+            "name": "cnft_args",
+            "type": {
+              "defined": {
+                "name": "CnftArgs"
+              }
+            }
+          }
+        ]
+      }
+    }
+  ],
+  "constants": [
+    {
+      "name": "COMPRESSED_LISTING_SEED",
+      "type": "bytes",
+      "value": "[99, 45, 108, 105, 115, 116, 105, 110, 103]"
+    },
+    {
+      "name": "MARKET_CONFIG_SEED",
+      "type": "bytes",
+      "value": "[109, 45, 99, 111, 110, 102, 105, 103]"
+    },
+    {
+      "name": "MARKET_FEEVAULT_SEED",
+      "type": "bytes",
+      "value": "[109, 45, 102, 101, 101, 118, 97, 117, 108, 116]"
+    },
+    {
+      "name": "OFFER_SEED",
+      "type": "bytes",
+      "value": "[111, 102, 102, 101, 114]"
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+generator client {
+  provider      = "prisma-client-js"
+  output        = "../.prisma"
+  binaryTargets = ["native", "linux-musl-openssl-3.0.x"]
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model Collection {
+  id          Int           @id
+  name        String
+  description String
+  website     String?
+  image       String?
+  uri         String?
+  createdAt   DateTime      @default(now())
+  creatorId   String
+  publickey   String?
+  merkelTree  String?
+  projectId   String
+  User        User          @relation(fields: [creatorId], references: [id])
+  Project     Project       @relation(fields: [projectId], references: [id])
+  NftMetadata NftMetadata[]
+  SaasRequest SaasRequest[]
+}
+
+model MarketTransaction {
+  id         Int             @id @default(autoincrement())
+  type       TransactionType
+  userId     String
+  price      String
+  createdAt  DateTime        @default(now())
+  assetId    String
+  merkleTree String
+  pda        String?
+  tx         String?
+  User       User            @relation(fields: [userId], references: [id])
+}
+
+model NftMetadata {
+  name         String
+  description  String
+  image        String
+  metadata     Json
+  collectionId Int
+  createdAt    DateTime   @default(now())
+  creatorId    String
+  address      String?
+  assetId      String?
+  minted       Boolean    @default(false)
+  uri          String?
+  tx           String?
+  id           Int        @id @default(autoincrement())
+  Collection   Collection @relation(fields: [collectionId], references: [id])
+  User         User       @relation(fields: [creatorId], references: [id])
+}
+
+model Project {
+  id          String       @id
+  name        String
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime?
+  content     String
+  description String
+  images      String[]
+  visibility  Visibility
+  userId      String
+  Collection  Collection[]
+  User        User         @relation(fields: [userId], references: [id])
+}
+
+model SaasJob {
+  id         Int          @id @default(autoincrement())
+  name       String
+  runCount   Int
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime?
+  SaasJobLog SaasJobLog[]
+}
+
+model SaasJobLog {
+  id        Int      @id @default(autoincrement())
+  jobId     Int
+  message   Json
+  createdAt DateTime @default(now())
+  status    String
+  SaasJob   SaasJob  @relation(fields: [jobId], references: [id])
+}
+
+model SaasRequest {
+  id            String        @id
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime?
+  maxNftCanMint Int
+  minted        Int           @default(0)
+  status        RequestStatus @default(PENDING)
+  collectionId  Int
+  userId        String
+  Collection    Collection    @relation(fields: [collectionId], references: [id])
+  User          User          @relation(fields: [userId], references: [id])
+}
+
+model User {
+  id                String              @id
+  fullname          String?
+  createdAt         DateTime            @default(now())
+  updatedAt         DateTime?
+  isKyced           Boolean             @default(false)
+  email             String?
+  name              String?
+  Collection        Collection[]
+  MarketTransaction MarketTransaction[]
+  NftMetadata       NftMetadata[]
+  Project           Project[]
+  SaasRequest       SaasRequest[]
+}
+
+enum RequestStatus {
+  PENDING
+  CREATED
+}
+
+enum TransactionType {
+  LIST
+  UNLIST
+  BUY
+}
+
+enum Visibility {
+  PUBLIC
+  PRIVATE
+}
