@@ -1,4 +1,5 @@
 "use server";
+import { getConfigAddress } from "@/lib/contracts/agrotree.contract";
 import {
   convertHeliusApiAssetToNftType,
   convertHeliusApiAssetToTreeNftType,
@@ -16,10 +17,13 @@ export async function getAssetByOwnerFromHelius(
   page: number = 1,
   size: number = 10
 ): Promise<PaginationShyftType<Nft>> {
-  const response = await helius.rpc.getAssetsByOwner({
+  const [agroTreeManagerConfigAddress] = getConfigAddress();
+  const response = await helius.rpc.searchAssets({
     ownerAddress: owner,
     page,
     limit: size,
+    tokenType: "nonFungible",
+    creatorAddress: agroTreeManagerConfigAddress.toString(),
     sortBy: {
       sortBy: AssetSortBy.Id,
       sortDirection: AssetSortDirection.Asc,
@@ -28,9 +32,7 @@ export async function getAssetByOwnerFromHelius(
 
   if (response.items.length > 0) {
     return {
-      items: response.items.map((item) =>
-        convertHeliusApiAssetToNftType(item)
-      ),
+      items: response.items.map((item) => convertHeliusApiAssetToNftType(item)),
       total_data: response.total,
       page: response.page,
       size: response.limit,

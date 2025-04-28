@@ -35,7 +35,7 @@ const MyTreeCard: React.FC<Props> = ({ address }) => {
   const [currency, setCurrency] = useState<"USD" | "SOL">("USD");
 
   const [pagination, setPagination] = React.useState<PaginationState>({
-    pageIndex: 0,
+    pageIndex: 1,
     pageSize: 10,
   });
   const { data, isLoading } = useQuery({

@@ -10,8 +10,12 @@ const appConfig = {
   appBaseUrl: IS_PRODUCTION
     ? new URL(`https://${process.env.NEXT_PUBLIC_HOST}`)
     : new URL(`http://localhost:${process.env.PORT || 3005}`),
-  endpointRpc: process.env.NEXT_PUBLIC_CLUSTER_URL || clusterApiUrl("devnet"),
-  dasApiRpc: process.env.DASAPI_CLUSTER_URL || clusterApiUrl("devnet"),
+  endpointRpc:
+    `${process.env.NEXT_PUBLIC_HELIUS_CLUSTER_URL}/?api-key=${process.env.HELIUS_API_KEY}` ||
+    clusterApiUrl("devnet"),
+  dasApiRpc:
+    `${process.env.NEXT_PUBLIC_HELIUS_CLUSTER_URL}/?api-key=${process.env.HELIUS_API_KEY}` ||
+    clusterApiUrl("devnet"),
 };
 
 export default appConfig;
