@@ -1,36 +1,84 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## AgroTree Ledger - Console App
 
-## Getting Started
+App: https://console.agrotreeledger.com/
 
-First, run the development server:
+Video: https://player.vimeo.com/video/1017350136
+
+[![Watch the video](.github/assets/markeplace.png)](https://player.vimeo.com/video/1017350136)
+
+## Description
+
+The AgroTree Ledger Marketplace App is a decentralized application that allows users to trade thier tree NFT tokens and earn. The app is built using
+
+- Next.js
+- Supabase
+- Prisma
+- Solana web3.js
+- Metaplex SDK
+- DasApi
+
+## How to run the app
+
+### 1. Clone the repository
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install dependencies
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm install
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Run the app
 
-## Learn More
+Create a `.env.local` file in the root directory and add the environment variables
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 4. Build the app
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+pnpm build
+```
 
-## Deploy on Vercel
+## How to use
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 1. Authenticate
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+User can authenticate using their solana wallet or social accounts (Google, Github, Twitter)
+
+### 2. View Top collection
+
+At the home page, user can view the top collection of tree NFTs. Click on the collection to view the details
+
+![collection page](.github/assets/collection-page.png)
+
+### 3. View project
+
+At the Project page, user can view the project details and the tree NFTs available for sale
+
+![project list](.github/assets/project-list.png)
+
+Click on project to view the details
+
+![project detail](.github/assets/project-detail.png)
+
+### 4. View tree NFT
+
+User can click on the tree NFT to view the details
+
+![view tree nft](.github/assets/tree-nft.png)
+
+### 5. Trade NFT
+
+User can list their tree NFT for sale or buy tree NFTs buy clicking on the action buttons on the tree NFT card.
+
+Access profile page to manage their tree NFTs.
+
+![profile menu](.github/assets/profile-menu.png)
+
+![profile page](.github/assets/profile-page.png)
